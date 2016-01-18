@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sync controls</title>
+        <script src="jquery.js"></script>
+		<script src="jquery-ui.js"></script>
+        <script src="jquery.ui.touch-punch.js"></script>
+        <script src="iscroll-probe.js"></script>
+<script src="index.js"></script>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            body,html {
+                height: 100%;
+                margin: 0;
+            }
+            .b-playground {
+                position: relative;
+                height: 50%;
+                padding: 0 20px;
+               
+                overflow: hidden;
+            }
+            .b-playground:before {
+                position:absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                content: "";
+                height: 100%;
+                background-color: rgba(86, 86, 85, 0.6);
+                z-index: 1;
+            }
+            .b-playground__bg {
+                position: absolute;
+                min-width: 100%;
+                height: 100%;
+                bottom: 0;
+                left: 0;
+            }
+
+            .b-playground__indicator {
+                width: 150px;
+                height: 150px;
+                top: 50%;
+                position: absolute;
+                margin-top: -75px;
+                margin-left: -75px;
+                left: 50%;
+                background: red;
+                z-index: 1;
+                border-radius: 50%;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <style>
+            .b-panorama {
+           
+             overflow: auto;
+                position: relative;
+                height: 50%;
+                overflow: hidden;
+                -ms-touch-action: none;
+                /* Prevent the callout on tap-hold and text selection */
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                /* Prevent text resize on orientation change, useful for web-apps */
+                -webkit-text-size-adjust: none;
+                -moz-text-size-adjust: none;
+                -ms-text-size-adjust: none;
+                -o-text-size-adjust: none;
+            }
+
+            .b-panorama__scroll  {
+              
+            }
+           
+            
+            
+           
+            .scroll-content-item {
+                display: inline-block;
+            }
+            .scroll-content {
+                white-space: nowrap;
+                font-size: 0;
+                height: 100%;
+            }
+            .scroll-content-item img {
+                width: 100%;
+                max-height: 100%;
+                vertical-align: bottom;
+
+            }
+            .scroll-content-item:before {
+                content: " ";
+                height: 100%;
+                display: inline-block;
+                vertical-align: bottom;
+            }
+        </style>
+       
+        <div class="b-panorama">
+            <div class="b-panorama__scroll scroll-content b-scroll-outer" style="height:100%;">
+                <div id="evenContent" class="scroll-content b-scroll-outer" style="">
+                    <div class="scroll-content-item" data-width="670" data-height="414">
+                            <span class="scroll-content-item__count">№2-4</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\2-4_341920215\201799342.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\2-4_341920215\201799342.png">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="294" data-height="414">
+                            <span class="scroll-content-item__count">№6</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\6_352943174\201542466.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\6_352943174\201542466.png" style="z-index: 1;">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="193" data-height="414">
+                            <span class="scroll-content-item__count">№8</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\8_352802327\201542822.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\8_352802327\201542822.png" style="z-index: 1;">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="163" data-height="414">
+                            <span class="scroll-content-item__count">№10</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\10_352925762\201542997.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\10_352925762\201542997.png" style="z-index: 1;">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="279" data-height="414">
+                            <span class="scroll-content-item__count">№12</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\12_352919634\201800533.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\12_352919634\201800533.png" style="z-index: 1;">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="276" data-height="414">
+                            <span class="scroll-content-item__count">№14</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\14_334827072\201543588.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\14_334827072\201543588.png" style="z-index: 1;">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="378" data-height="415">
+                            <span class="scroll-content-item__count">№16</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\16_334827251\201543693.png" src="http://mynameisvova.ru/dp/images/Apps\HouseApp\16_334827251\201543693.png" style="z-index: 1;">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="127" data-height="415">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\наб. реки Мойки_366456483\201544538.png" src="" alt="">
+                         
+                    </div>
+                   
+                    <div class="scroll-content-item" data-width="149" data-height="415">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\Большая Конюшенная ул._366537766\201574837.png" src="" alt="">
+                         
+                    </div>
+                   
+
+                    <div class="scroll-content-item" data-width="957" data-height="414">
+                            <span class="scroll-content-item__count">№22-24</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\22-24_366458599\201798349.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="293" data-height="414">
+                            <span class="scroll-content-item__count">№26</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\26_353557892\201548048.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="169" data-height="415">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\наб. канала Грибоедова_366539696\201576020.png" src="" alt="">
+                         
+                    </div>
+                
+
+                    <div class="scroll-content-item" data-width="598" data-height="414">
+                            <span class="scroll-content-item__count">№30</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\30_353557446\201548699.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="849" data-height="414">
+                            <span class="scroll-content-item__count">№32-34</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\32-34_366465777\201818513.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="310" data-height="414">
+                            <span class="scroll-content-item__count">№36</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\36_353556767\201549878.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="390" data-height="414">
+                            <span class="scroll-content-item__count">№38</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\38_353569402\201550509.png" src="">
+                         
+                    </div>
+               
+                    <div class="scroll-content-item" data-width="370" data-height="414">
+                            <span class="scroll-content-item__count">№44</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\44_353567891\201553583.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="477" data-height="414">
+                            <span class="scroll-content-item__count">№46</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\46_353568618\201797418.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="470" data-height="414">
+                            <span class="scroll-content-item__count">№48</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\48_353567461\201797868.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="178" data-height="589">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\Садовая ул._366540629\201783946.png" src="" alt="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="796" data-height="414">
+                            <span class="scroll-content-item__count">№50</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\50_353566934\196697307.png" src="">
+                         
+                    </div>
+
+                
+                    <div class="scroll-content-item" data-width="156" data-height="415">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\Малая Садовая_366541017\201576529.png" src="" alt="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="733" data-height="414">
+                            <span class="scroll-content-item__count">№54</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\54_353572022\201727690.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="445" data-height="414">
+                            <span class="scroll-content-item__count">№56</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\56_353571378\201557192.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="251" data-height="414">
+                            <span class="scroll-content-item__count">№58</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\58_353571146\201557504.png" src="">
+                         
+                    </div>
+                
+
+                    <div class="scroll-content-item" data-width="180" data-height="415">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\Караванная ул._366541688\201576858.png" src="" alt="">
+                         
+                    </div>
+                   
+
+                    <div class="scroll-content-item" data-width="391" data-height="415">
+                            <span class="scroll-content-item__count">№70</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\70_353583603\201559806.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="469" data-height="415">
+                            <span class="scroll-content-item__count">№72</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\72_353583447\201560219.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="213" data-height="589">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\Литейный пр._366542472\201785114.png" src="" alt="">
+                         
+                    </div>
+                  
+                    <div class="scroll-content-item" data-width="543" data-height="415">
+                            <span class="scroll-content-item__count">№82</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\82_353582157\201563882.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="1064" data-height="415">
+                            <span class="scroll-content-item__count">№84-86</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\84-86_353588449\201564321.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="1074" data-height="415">
+                            <span class="scroll-content-item__count">№88</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\88_353588165\201564674.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="143" data-height="415">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\366500291\201786428.png" src="" alt="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="826" data-height="415">
+                            <span class="scroll-content-item__count">№90-92</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\90-92_353588003\201819179.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="283" data-height="414">
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\SpaceApp\ул. Маяковского_366503121\201567243.png" src="" alt="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="254" data-height="415">
+                            <span class="scroll-content-item__count">№94</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\94_353587730\201566126.png" src="">
+                         
+                    </div>
+                
+                    <div class="scroll-content-item" data-width="207" data-height="415">
+                            <span class="scroll-content-item__count">№98</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\98_353593341\201567569.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="403" data-height="415">
+                            <span class="scroll-content-item__count">№100</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\100_353593229\201567644.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="213" data-height="415">
+                            <span class="scroll-content-item__count">№102</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\102_353593113\201567716.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="247" data-height="415">
+                            <span class="scroll-content-item__count">№104</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\104_353593003\201568102.png" src="">
+                         
+                    </div>
+
+                  
+                    <div class="scroll-content-item" data-width="308" data-height="415">
+                            <span class="scroll-content-item__count">№108</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\108_353592904\201573173.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="196" data-height="415">
+                            <span class="scroll-content-item__count">№110</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\110_353592294\201573501.png" src="">
+                         
+                    </div>
+
+                    <div class="scroll-content-item" data-width="187" data-height="414">
+                            <span class="scroll-content-item__count">№112</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\112_353592601\201578324.png" src="">
+                         
+                    </div>
+                    <div class="scroll-content-item" data-width="1042" data-height="414">
+                        
+                            <span class="scroll-content-item__count">№114-116</span>
+                            <img class="scroll-content-item__img b-visible b-unhover" lazy-src="http://mynameisvova.ru/dp/images/Apps\HouseApp\114-116_353592139\201819376.png" src="">
+                         
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="b-playground">
+            <div class="b-playground__indicator">
+            </div>
+            <img src="bg-scroll2.png" class="b-playground__bg" />
+
+        </div>
+        <script>
+            new Controls();
+        </script>
+    </body>
+</html>
