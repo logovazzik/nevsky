@@ -230,7 +230,7 @@ function Indicator(settings) {
         });
 
     }
-    this.init = function () {
+    this.init = function() {
         this.bindEvents();
         this.fillDimensions();
         var position = $element.position();
@@ -238,28 +238,31 @@ function Indicator(settings) {
         $element.draggable({
             scroll: false,
             axis: 'x',
-            revert: true,
+
             containment: this.playground.$element
-        }).on('dragstart', function () {
+        }).on('dragstart', function() {
             self.playground.$element.triggerHandler('start.move');
             self.dragging = true;
+            $element.removeClass('b-playground__indicator_animation');
 
         }).on('dragstop', function () {
+            $element.css("left", self.setupPosition.left + 'px');
+            $element.addClass('b-playground__indicator_animation');
             self.playground.$element
                 .triggerHandler('stop.move');
             self.playground.$element.triggerHandler('indicator.value.changed', { value: 0 });
             self.dragging = false;
-        }).on('drag', function (event, ui) {
+        }).on('drag', function(event, ui) {
             if (!ui) return;
             ui.position = jQuery.extend(ui.position, self.checkCoordinates(ui.position));
             self.setValue(ui.position);
         });
-        this.$document.on("pointerup.end.drag mouseup.end.drag", function () {
+        this.$document.on("pointerup.end.drag mouseup.end.drag", function() {
             if (self.dragging) {
                 self.playground.$element.triggerHandler('stop.move');
             }
         });
-    }
+    };
 
 
 
