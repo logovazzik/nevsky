@@ -58,7 +58,8 @@ function Panorama(settings) {
         scroller: {
             selector: '.b-panorama',
             options: { scrollX: true, scrollY: false, probeType: 3 }
-        }
+        },
+        visibilityOffset: 300
     };
     this.timerApplySrc = null;
     this.timerExecEvent = null;
@@ -108,7 +109,7 @@ function Panorama(settings) {
         console.log('apply')
         _.$items.each(function () {
             var $item = jQuery(this), $images = $item.find('img'), lazySrc;
-            if (self.checkItemVisibility($item, -200, _.$window.width() +200)) {
+            if (self.checkItemVisibility($item, -(_.visibilityOffset), _.$window.width() + _.visibilityOffset)) {
                 $images.each(function () {
                     var $image = jQuery(this);
                     if (lazySrc = $image.attr('lazy-src')) {
@@ -273,7 +274,6 @@ function Playground(settings) {
     this.moving = false;
     this.indicator = null;
     this.movingInterval = null;
-    this.movingIntervalDelay = 20;
     this.settings = {};
     this.$movingElement = null;
     this.speedCoeff = 0.2;
@@ -287,7 +287,6 @@ function Playground(settings) {
         window.cancelAnimationFrame(this.movingInterval);
         this.moving = false;
     };
-    this.$debug = jQuery("#debug");
     this.getValue = function () {
         var position = this.$movingElement.position();
         var coord = Math.abs(position.left - self.$element.outerWidth() / 2) / self.$movingElement.outerWidth();
@@ -337,17 +336,29 @@ function Playground(settings) {
     this.bindEvents = function () {
         this.$element.on('stop.move', function () {
             self.stop();
-            self.$debug.html("stop.move");
 
         });
         this.$element.on('indicator.value.changed', function (e, data) {
             self.speed = data.value;
         });
 
+        this.$element.on("click.force.scroll", function (e) {
+            var x = e.pageX,
+                movingWidth = self.$movingElement.outerWidth(),
+                movingOffset = self.$movingElement.position().left,
+                delta;
+            if ((delta = x - movingOffset)< 0) {
+                delta = 0;
+            }
+            
+            if (delta > movingWidth ) {
+                delta = movingWidth;
+            }
+            _.controls.refresh(self, delta / movingWidth);
+        });
         this.$element.on('start.move', function (e, data) {
             if (self.moving) return;
             self.move();
-            self.$debug.html("start.move");
         });
 
         _.controls.callbacks.add(function (emitter, value) {
