@@ -108,7 +108,7 @@ function Panorama(settings) {
         console.log('apply')
         _.$items.each(function () {
             var $item = jQuery(this), $images = $item.find('img'), lazySrc;
-            if (self.checkItemVisibility($item, 0, _.$window.width())) {
+            if (self.checkItemVisibility($item, -200, _.$window.width() +200)) {
                 $images.each(function () {
                     var $image = jQuery(this);
                     if (lazySrc = $image.attr('lazy-src')) {
