@@ -193,9 +193,9 @@ function Panorama(settings) {
             _.$window.on('resize.reflow.panorama', function () {
                 self.reflow();
             });
-            _.$document.on('touchmove.prevent', function (e) {
-                e.preventDefault();
-            });
+            //_.$document.on('touchmove.prevent', function (e) {
+            //    e.preventDefault();
+            //});
         };
         this.resizeItems = function(height) {
             _.$items.each(function() {
